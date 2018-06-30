@@ -20,6 +20,8 @@ function home(req, res) {
 }
 
 function profile(req, res) {
+	var id = request.query.id;
+	
 	get_user(id, function(error, result) {
 		if (error || result == null || result.length != 1) {
 			response.status(500).json({success: false, data: error});
