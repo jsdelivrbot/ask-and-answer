@@ -1,5 +1,5 @@
 function homepage (req, req) {
-	res.render('pages/index')
+	res.render('pages/index');
 }
 
 const express = require('express')
