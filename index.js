@@ -1,10 +1,9 @@
 const express = require('express')
 const path = require('path')
 const {Pool} = require('pg')
-const connectionString = process.env.DATABASE_URL
 
 const pool = new Pool({
-	connectionString: connectionString,
+	connectionString: process.env.DATABASE_URL
 })
 
 function get_user(id, callback) {
