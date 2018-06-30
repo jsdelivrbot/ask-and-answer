@@ -1,3 +1,11 @@
+const express = require('express')
+const path = require('path')
+const {Pool} = require('pg')
+const connectionString = process.env.DATABASE_URL || "postgres://ta_user:ta_pass@localhost:5432/familyhistory";
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL //connectionString
+});
+
 function get_user(id, callback) {
 	console.log("Getting user from DB with id: " + id);
 	var sql = "SELECT id, username, picture_url, description FROM user WHERE id = $1::int";
@@ -21,7 +29,7 @@ function home(req, res) {
 
 function profile(req, res) {
 	console.log("getting id...");
-	//var id = req.query.id;
+	var id = req.query.id;
 	
 	get_user(id, function(error, result) {
 		if (error || result == null || result.length != 1) {
@@ -51,8 +59,6 @@ function question(req, res) {
 	res.render('pages/question');
 }
 
-const express = require('express')
-const path = require('path')
 const PORT = process.env.PORT || 3000
 
 express()
