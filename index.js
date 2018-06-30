@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const {Pool} = require('pg')
-const connectionString = process.env.DATABASE_URL || "postgres://postgres:Emerald333@localhost:3000/";
+const connectionString = process.env.DATABASE_URL
 
 const pool = new Pool({
 	connectionString: connectionString,
