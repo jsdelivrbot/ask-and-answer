@@ -18,6 +18,10 @@ function sign_up(req, res) {
 	res.render('pages/sign_up');
 }
 
+function question(req, res) {
+	res.render('pages/question');
+}
+
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 3000
@@ -31,4 +35,5 @@ express()
   .get('/browse', browse)
   .get('/sign_in', sign_in)
   .get('/sign_up', sign_up)
+  .get('/question', question)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
