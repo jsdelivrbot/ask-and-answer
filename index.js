@@ -21,7 +21,7 @@ function home(req, res) {
 
 function profile(req, res) {
 	console.log("getting id...");
-	var id = req.query.id;
+	//var id = req.query.id;
 	
 	get_user(id, function(error, result) {
 		if (error || result == null || result.length != 1) {
