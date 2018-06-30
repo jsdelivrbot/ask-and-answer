@@ -37,3 +37,5 @@ create table best_answer (
 	question_id integer unique references question(id),
 	answer_id integer references answer(id)
 );
+
+insert into "user" (username, password, description) values ('admin', 'admin', 'admin');

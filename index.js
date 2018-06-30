@@ -1,8 +1,34 @@
+function get_user(id, callback) {
+	console.log("Getting user from DB with id: " + id);
+	var sql = "SELECT id, username, picture_url, description FROM user WHERE id = $1::int";
+	var params = [id];
+
+	pool.query(sql, params, function(err, result) {
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			callback(err, null);
+		}
+		
+		console.log("Found result: " + JSON.stringify(result.rows));
+		callback(null, result.rows);
+	});
+}
+
 function home(req, res) {
 	res.render('pages/index');
 }
 
 function profile(req, res) {
+	get_user(id, function(error, result) {
+		if (error || result == null || result.length != 1) {
+			response.status(500).json({success: false, data: error});
+		} else {
+			var person = result[0];
+			response.status(200).json(result[0]);
+		}
+	});
+	
 	res.render('pages/profile');
 }
 
