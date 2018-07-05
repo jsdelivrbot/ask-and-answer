@@ -6,23 +6,21 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL
 })
 
-function query_error_check(err, result) {
-	if (err) {
-			console.log("Error in query: ")
-			console.log(err);
-			callback(err, null);
-		}
-		
-		console.log("Found result: " + JSON.stringify(result.rows));
-		callback(null, result.rows);
-	}
-}
-
 function get_user(id, callback) {
 	console.log("Getting user from DB with id: " + id);
 	var sql = 'SELECT id, username, picture_url, description FROM "user" WHERE id = $1::int';
 	var params = [id];
-	pool.query(sql, params, query_error_check);
+	
+	pool.query(sql, params, function(err, result) {
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			callback(err, null);
+		}
+	
+		console.log("Found result: " + JSON.stringify(result.rows));
+		callback(null, result.rows);
+	});
 }
 
 function home(req, res) {
