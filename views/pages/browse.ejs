@@ -8,5 +8,12 @@
 	<% include ../partials/title.ejs %> 
 	<% include ../partials/nav.ejs %> 
 	<h2>Browse</h2>
+	
+	<%= JSON.stringify(results) %>
+	<ul>
+    <% results.forEach(function(o) { %>
+        <li><%= o.name %></li>
+    <% }); %>
+	</ul>
 </body>
 </html>
