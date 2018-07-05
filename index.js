@@ -22,20 +22,6 @@ function get_user(id, callback) {
 	});
 }
 
-function get_categories(callback) {
-	var sql = 'SELECT name FROM category';
-	
-	pool.query(sql, function(err, result) {
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-	
-		console.log("Found result: " + JSON.stringify(result.rows));
-		callback(null, result.rows);
-	});
-}
-
 function home(req, res) {
 	res.render('pages/index');
 }
@@ -55,18 +41,6 @@ function profile(req, res) {
 }
 
 function browse(req, res) {
-	/*
-	get_categories(function(error, result) {
-		if (error || result == null || result.length != 1) {
-			res.status(500).json({success: false, data: error});
-		} 
-		else {
-			var person = result[0];
-			res.status(200).json(result[0]);
-		}
-	});
-	*/
-	
 	pool.query('SELECT name FROM category', function(error, result) {
 		if (error) {
 			res.status(500).json({success: false, data: error});
