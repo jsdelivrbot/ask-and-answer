@@ -54,6 +54,8 @@ function profile(req, res) {
 			res.status(200).json(result[0]);
 		}
 	});
+	
+	res.render('pages/profile');
 }
 
 function browse(req, res) {
