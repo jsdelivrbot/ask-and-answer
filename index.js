@@ -6,7 +6,9 @@ const pool = new Pool({
 	connectionString: process.env.DATABASE_URL
 })
 
-function get_user(id, callback) {
+function getUser(req, res) {
+	var id = req.query.id;
+	
 	console.log("Getting user from DB with id: " + id);
 	var sql = 'SELECT id, username, picture_url, description FROM "user" WHERE id = $1::int';
 	var params = [id];
@@ -14,16 +16,16 @@ function get_user(id, callback) {
 	pool.query(sql, params, function(err, result) {
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			res.status(500).json({success: false, data: error});
 		}
 	
 		console.log("Found result: " + JSON.stringify(result.rows));
-		callback(null, result.rows);
+		res.status(200).json(result.rows[0]);
 	});
 }
 
 function getQuestion(req, res) {
-	var question_id = req.query.question_id;
+	var id = req.query.id;
 	
 	console.log("Getting question from DB with id: " + id);
 	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
@@ -36,27 +38,7 @@ function getQuestion(req, res) {
 		}
 	
 		console.log("Found result: " + JSON.stringify(result.rows));
-		res.status(200).json(result[0]);
-	});
-}
-
-function home(req, res) {
-	res.render('pages/index');
-}
-
-function profile(req, res) {
-	console.log("getting id...");
-	var id = req.query.id;
-	
-	get_user(id, function(error, result) {
-		if (error || result == null || result.length != 1) {
-			res.status(500).json({success: false, data: error});
-		} 
-		else {
-			//res.status(200).json(result[0]);
-			//res.json(result[0]);
-			res.render('pages/profile', {results: result});
-		}
+		res.status(200).json(result.rows[0]);
 	});
 }
 
@@ -69,6 +51,14 @@ function getCategories(req, res) {
 			res.status(200).json(result.rows[0]);
 		}
 	});
+}
+
+function home(req, res) {
+	res.render('pages/index');
+}
+
+function profile(req, res) {
+	res.render('pages/profile');
 }
 
 function browse(req, res) {
