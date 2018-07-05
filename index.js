@@ -24,7 +24,7 @@ function get_user(id, callback) {
 
 function get_question(id, callback) {
 	console.log("Getting question from DB with id: " + id);
-	var sql = 'SELECT id, title, content, date, category_id FROM question WHERE id = $1::int';
+	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
 	var params = [id];
 	
 	pool.query(sql, params, function(err, result) {

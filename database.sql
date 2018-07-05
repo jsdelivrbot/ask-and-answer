@@ -41,3 +41,5 @@ create table best_answer (
 insert into "user" (username, password, description) values ('admin', 'admin', 'admin');
 
 insert into category (name) values ('Romance');
+
+insert into question (title, content, "date", category_id) values ('Test Question', 'Content', '7/4/2018', 1);
