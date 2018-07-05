@@ -42,7 +42,7 @@ function profile(req, res) {
 }
 
 function browse(req, res) {
-	pool.query('SELECT * FROM category', function(error, result) {
+	pool.query('SELECT * FROM category;', function(error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success: false, data: error});
 		} 
