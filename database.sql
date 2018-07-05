@@ -39,3 +39,5 @@ create table best_answer (
 );
 
 insert into "user" (username, password, description) values ('admin', 'admin', 'admin');
+
+insert into category (name) values ('Romance');

@@ -13,8 +13,23 @@ function get_user(id, callback) {
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
-			console.log("Error in query: ")
-			console.log(err);
+			console.log("Error in query: " + err);
+			callback(err, null);
+		}
+	
+		console.log("Found result: " + JSON.stringify(result.rows));
+		callback(null, result.rows);
+	});
+}
+
+function get_category(id, callback) {
+	console.log("Getting category from DB with id: " + id);
+	var sql = 'SELECT id, name FROM category WHERE id = $1::int';
+	var params = [id];
+	
+	pool.query(sql, params, function(err, result) {
+		if (err) {
+			console.log("Error in query: " + err);
 			callback(err, null);
 		}
 	
@@ -34,7 +49,8 @@ function profile(req, res) {
 	get_user(id, function(error, result) {
 		if (error || result == null || result.length != 1) {
 			res.status(500).json({success: false, data: error});
-		} else {
+		} 
+		else {
 			var person = result[0];
 			res.status(200).json(result[0]);
 		}
@@ -42,7 +58,17 @@ function profile(req, res) {
 }
 
 function browse(req, res) {
-	res.render('pages/browse');
+	var category_id = req.query.category_id;
+	
+	get_category(category_id, function(error, result) {
+		if (error || result == null || result.length != 1) {
+			res.status(500).json({success: false, data: error});
+		} 
+		else {
+			var person = result[0];
+			res.status(200).json(result[0]);
+		}
+	});
 }
 
 function sign_in(req, res) {
