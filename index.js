@@ -52,8 +52,8 @@ function profile(req, res) {
 		} 
 		else {
 			//res.status(200).json(result[0]);
-			res.json(result[0]);
-			res.render('pages/profile');
+			//res.json(result[0]);
+			res.render('pages/profile', json(result[0]));
 		}
 	});
 }
