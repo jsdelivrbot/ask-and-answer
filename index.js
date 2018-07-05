@@ -58,16 +58,19 @@ function profile(req, res) {
 	});
 }
 
-function browse(req, res) {
+function getCategories(req, res) {
 	pool.query('SELECT name FROM category', function(error, result) {
 		if (error) {
 			res.status(500).json({success: false, data: error});
 		} 
 		else {
-			//res.status(200).json(result.rows[0]);
-			res.render('pages/browse', {results: result});
+			res.status(200).json(result.rows[0]);
 		}
 	});
+}
+
+function browse(req, res) {
+	res.render('pages/browse');
 }
 
 function sign_in(req, res) {
@@ -103,4 +106,5 @@ express()
   .get('/sign_in', sign_in)
   .get('/sign_up', sign_up)
   .get('/question', question)
+  .get('/getCategories', getCategories)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
