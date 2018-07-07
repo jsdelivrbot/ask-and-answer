@@ -8,12 +8,12 @@ function search() {
 
 function updateResultList(data) {			
 	if (data && data.length > 0) {
-		var resultList = $("#ulCategories");
-		resultList.empty();
+		var categories = $("#selectCategories");
+		categories.empty();
 
 		for (var i = 0; i < data.length; i++) {
 			var name = data[i].name;
-			resultList.append("<li>" + name + "</li>");
+			categories.append("<option value='" + name + "'>" + name + "</option>");
 		}
 	}
 }
