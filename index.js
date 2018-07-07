@@ -59,6 +59,19 @@ function addUser(req, res) {
 	var user = req.body.user;
 	var pass = req.body.pass;
 	var passVer = req.body.passVer;
+	
+	console.log("adding user...");
+	
+	var sql = 'INSERT INTO "user" (username, password) VALUES ($1::string, $2::string)';
+	var params = [user, pass];
+	
+	pool.query(sql, params, function(err, result) {
+		if (err) {
+			throw err;
+		}
+	
+		console.log("User inserted.");
+	});
 }
 
 function home(req, res) {
