@@ -97,7 +97,7 @@ const PORT = process.env.PORT || 3000
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
-  .use(session())
+  .use(session({ resave: true, secret: '123456' , saveUninitialized: true }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', home)
