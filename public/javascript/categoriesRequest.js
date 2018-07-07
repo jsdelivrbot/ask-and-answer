@@ -28,3 +28,5 @@ function updateResultList(data) {
 		}
 	}
 }
+
+search();
