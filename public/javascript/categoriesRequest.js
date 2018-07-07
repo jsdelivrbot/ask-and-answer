@@ -13,20 +13,14 @@ function search() {
 	});
 }
 
-function updateResultList(data) {
-	console.log("updating results");
-				
+function updateResultList(data) {			
 	if (data && data.length > 0) {
 		var resultList = $("#ulCategories");
 		resultList.empty();
-		console.log("result list: " + resultList);
 
 		for (var i = 0; i < data.length; i++) {
-			console.log("appending");
 			var name = data[i].name;
 			resultList.append("<li><p>" + name + "</p></li>");
 		}
 	}
 }
-
-search();
