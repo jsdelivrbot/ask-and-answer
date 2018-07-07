@@ -67,10 +67,10 @@ function addUser(req, res) {
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
-			throw err;
+			res.status(500).json({success: false, data: error});
 		}
 	
-		console.log("User inserted.");
+		res.status(200).json(result.rows);
 	});
 }
 
