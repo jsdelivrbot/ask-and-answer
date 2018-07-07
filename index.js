@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const path = require('path')
 const {Pool} = require('pg')
 
@@ -61,6 +62,17 @@ function profile(req, res) {
 	res.render('pages/profile');
 }
 
+function myProfile(req, res) {
+	var userID = req.session.userID;
+	
+	if (userID) {
+		res.render('pages/profile?userID=' + userID);
+	}
+	else {
+		res.render('pages/sign_in');
+	}
+}
+
 function browse(req, res) {
 	res.render('pages/browse');
 }
@@ -89,6 +101,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', home)
   .get('/profile', profile)
+  .get('/myProfile', myProfile)
   .get('/browse', browse)
   .get('/sign_in', sign_in)
   .get('/sign_up', sign_up)
