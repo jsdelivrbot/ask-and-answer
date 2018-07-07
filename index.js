@@ -48,7 +48,7 @@ function getCategories(req, res) {
 			res.status(500).json({success: false, data: error});
 		} 
 		else {
-			res.status(200).json(result.rows[0]);
+			res.status(200).json(result.rows);
 		}
 	});
 }
