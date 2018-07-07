@@ -1,5 +1,6 @@
 const express = require('express')
 const session = require('express-session')
+const bodyParser = require('body-parser');
 const path = require('path')
 const {Pool} = require('pg')
 
@@ -54,6 +55,12 @@ function getCategories(req, res) {
 	});
 }
 
+function addUser(req, res) {
+	var user = req.body.user;
+	var pass = req.body.pass;
+	var passVer = req.body.passVer;
+}
+
 function home(req, res) {
 	res.render('pages/index');
 }
@@ -98,6 +105,8 @@ const PORT = process.env.PORT || 3000
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(session({ resave: true, secret: '123456' , saveUninitialized: true }))
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', home)
