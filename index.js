@@ -63,9 +63,9 @@ function profile(req, res) {
 }
 
 function myProfile(req, res) {
-	var userID = req.session.userID;
+	ssn = req.session;
 	
-	if (userID) {
+	if (ssn.userID) {
 		res.render('pages/profile?userID=' + userID);
 	}
 	else {
