@@ -67,7 +67,7 @@ function addUser(req, res) {
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
-			res.status(500).json({success: false, data: error});
+			res.status(500).json({success: false, data: err});
 		}
 	
 		res.status(200).json(result.rows);
