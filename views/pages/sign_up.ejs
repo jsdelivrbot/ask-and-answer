@@ -8,7 +8,7 @@
 	<% include ../partials/title.ejs %> 
 	<% include ../partials/nav.ejs %> 
 	<h2>Sign Up</h2>
-	<form action="/addUser">
+	<form method="post" action="/addUser">
 		Username: <input type="text" name="user"><br>
 		Password: <input type="text" name="pass"><br>
 		Password Verify: <input type="text" name="passVer"><br>
