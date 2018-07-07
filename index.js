@@ -62,7 +62,7 @@ function addUser(req, res) {
 	
 	console.log("adding user...");
 	
-	var sql = 'INSERT INTO "user" (username, password) VALUES ($1::string, $2::string)';
+	var sql = 'INSERT INTO "user" (username, password) VALUES ($1::varchar, $2::varchar)';
 	var params = [user, pass];
 	
 	pool.query(sql, params, function(err, result) {
