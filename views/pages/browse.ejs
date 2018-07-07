@@ -15,7 +15,8 @@
 		console.log("test");
 	%>
 	
-	<script src="https://code.jquery.com/jquery.min.js">
+	<% 
+		require("https://code.jquery.com/jquery.min.js");
 		console.log("test");
 		
 			function search() {
@@ -44,6 +45,6 @@
 			}
 			
 			search();
-	</script>
+	%>
 </body>
 </html>
