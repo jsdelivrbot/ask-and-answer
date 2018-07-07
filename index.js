@@ -77,6 +77,10 @@ function question(req, res) {
 	res.render('pages/question');
 }
 
+function ask(req, res) {
+	res.render('pages/ask');
+}
+
 const PORT = process.env.PORT || 3000
 
 express()
@@ -89,6 +93,7 @@ express()
   .get('/sign_in', sign_in)
   .get('/sign_up', sign_up)
   .get('/question', question)
+  .get('/ask', ask)
   .get('/getCategories', getCategories)
   .get('/getQuestion', getQuestion)
   .get('/getUser', getUser)
