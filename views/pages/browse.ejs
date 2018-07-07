@@ -38,14 +38,14 @@
 			function updateResultList(data) {
 				console.log("updating results");
 				
-				if (data.Search && data.Search.length > 0) {
+				if (data && data.length > 0) {
 					var resultList = $("#ulCategories");
 					resultList.empty();
 					console.log("result list: " + resultList);
 
-					for (var i = 0; i < data.Search.length; i++) {
+					for (var i = 0; i < data.length; i++) {
 						console.log("appending");
-						var name = data.Search[i].name;
+						var name = data[i].name;
 						resultList.append("<li><p>" + name + "</p></li>");
 					}
 				}
