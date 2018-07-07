@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<script src="browse.js"></script>
 </head>
 
 <body>
 	<% include ../partials/title.ejs %> 
 	<% include ../partials/nav.ejs %> 
 	<h2>Browse</h2>
-	
+	<ul id="ulCategories">
+		<script>ajaxCategories()</script>
+	</ul>
 </body>
 </html>
