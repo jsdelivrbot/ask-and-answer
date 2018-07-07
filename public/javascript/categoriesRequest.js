@@ -13,7 +13,7 @@ function updateResultList(data) {
 
 		for (var i = 0; i < data.length; i++) {
 			var name = data[i].name;
-			resultList.append("<li><p>" + name + "</p></li>");
+			resultList.append("<li>" + name + "</li>");
 		}
 	}
 }
