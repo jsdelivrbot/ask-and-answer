@@ -67,12 +67,10 @@ function addUser(req, res) {
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
-			res.status(500).json({success: false, data: err});
+			//res.status(500).json({success: false, data: err});
 		}
 		else {
-			var id = result.rows.insertId;
-			console.log("stuff: " + JSON.stringify(result.rows));
-			console.log("result: " + result.rows);
+			var id = result.insertId;
 			console.log("id is: " + id);
 			
 			res.redirect('/profile?id=' + id);
