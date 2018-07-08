@@ -1,16 +1,19 @@
 function getUsername(user_id) {
 	console.log("user id in request is: " + user_id);
 	var params = {id: user_id};
+	var username = "";
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 		if (data) {
+			username = data.username;
 			console.log("username is: " + data.username);
-			return data.username;
 		}
 		else {
 			console.log("Invalid request!");
 		}
 	});
+	
+	return username;
 }
 
 function displayQuestion(id) {
