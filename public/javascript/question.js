@@ -1,10 +1,9 @@
 function getUsername(user_id) {
-	console.log("user id in request is: " + user_id);
 	var params = {id: user_id};
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 		if (data) {
-			document.getElementById("asker").innerHTML = "<a href='/profile?id='" + user_id + "'>" + data.username + "</a>";
+			document.getElementById("asker").innerHTML = "<a href='/profile?id='" + data.id + "'>" + data.username + "</a>";
 		}
 		else {
 			console.log("Invalid request!");
@@ -20,7 +19,6 @@ function displayQuestion(id) {
 			var title = data[0].title;
 			var content = data[0].content;
 			var user_id = data[0].user_id;
-			console.log("function user_id is: " + user_id);
 			
 			document.getElementById("title").innerHTML = title;
 			document.getElementById("content").innerHTML = content;
