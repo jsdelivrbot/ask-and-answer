@@ -71,7 +71,10 @@ function addUser(req, res) {
 		}
 	
 		var id = result.insertId;
-		res.render('pages/profile', {id: id});
+		//res.render('pages/profile', {id: id});
+		
+		res.redirect('/profile?id=' + id);
+		res.end();
 	});
 }
 
