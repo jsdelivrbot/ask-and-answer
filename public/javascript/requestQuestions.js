@@ -10,7 +10,7 @@ function listQuestions() {
 			for (var i = 0; i < data.length; i++) {
 				var title = data[i].title;
 				var id = data[i].id;
-				ul.append("<li><a href='/question?id=" + id + "'>" + title + "K/a></li>");
+				ul.append("<li><a href='/question?id=" + id + "'>" + title + "</a></li>");
 			}
 		}
 	});
