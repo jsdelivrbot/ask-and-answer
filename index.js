@@ -38,9 +38,10 @@ function getQuestion(req, res) {
 			console.log("Error in query: " + err);
 			res.status(500).json({success: false, data: err});
 		}
-	
-		console.log("Found result: " + JSON.stringify(result.rows));
-		res.status(200).json(result.rows);
+		else {
+			console.log("Found result: " + JSON.stringify(result.rows));
+			res.status(200).json(result.rows);
+		}
 	});
 }
 
