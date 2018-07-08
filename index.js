@@ -69,12 +69,13 @@ function addUser(req, res) {
 		if (err) {
 			res.status(500).json({success: false, data: err});
 		}
-	
-		var id = result.rows.insertId;
-		//res.render('pages/profile', {id: id});
+		else {
+			var id = result.insertId;
+			//res.render('pages/profile', {id: id});
 		
-		res.redirect('/profile?id=' + id);
-		res.end();
+			res.redirect('/profile?id=' + id);
+			res.end();
+		}
 	});
 }
 
