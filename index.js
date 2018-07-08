@@ -62,22 +62,38 @@ function addUser(req, res) {
 	
 	console.log("adding user...");
 	
-	var sql = 'INSERT INTO "user" (username, password) VALUES ($1::varchar, $2::varchar) RETURNING id';
+	var sql = 'INSERT INTO "user" (username, password) VALUES ($1::varchar, $2::varchar)';
 	var params = [user, pass];
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
-			//res.status(500).json({success: false, data: err});
+			res.status(500).json({success: false, data: err});
 		}
 		else {
-			var id = result.rows[0].id;
-			console.log("id is: " + id);
-			
-			
-			res.redirect('/profile?id=' + id);
+			res.redirect('/sign_in');
 			res.end();
 		}
 	});
+}
+
+function signInUser(req, res) {
+	var user = req.body.user;
+	var pass = req.body.pass;
+	
+	var sql = 'SELECT id, username, password FROM "user" WHERE username = $1::varchar AND password = $2::varchar';
+	var params = [user, pass]
+	
+	pool.query(sql, params, function(err, result) {
+		if (error || result.rows.length > 1) {
+			res.status(500).json({success: false, data: err});
+		}
+		else {
+			ssn = req.session;
+			ssn.userID = result.rows[0].id;
+			res.redirect('/profile');
+			res.end();
+		}
+	}
 }
 
 function home(req, res) {
@@ -139,5 +155,6 @@ express()
   .get('/getCategories', getCategories)
   .get('/getQuestion', getQuestion)
   .get('/getUser', getUser)
+  .get('/signInUser', signInUser)
   .post('/addUser', addUser)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
