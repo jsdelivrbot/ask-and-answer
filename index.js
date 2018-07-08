@@ -84,7 +84,7 @@ function signInUser(req, res) {
 	var params = [user, pass];
 	
 	pool.query(sql, params, function(err, result) {
-		if (error || result.rows.length > 1) {
+		if (err || result.rows.length > 1) {
 			res.status(500).json({success: false, data: err});
 		}
 		else {
