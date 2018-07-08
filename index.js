@@ -28,16 +28,10 @@ function getUser(req, res) {
 
 function getQuestion(req, res) {
 	var id = req.query.id;
-	var sql;
-	var params;
+	var categoryId = req.query.categoryId;
 	
-	if (id) {
-		sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
-		params = [id];
-	}
-	else {
-		sql = 'SELECT id, title, content, "date", category_id FROM question';
-	}
+	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = IFNULL(?, $1::int) AND category_id = IFNULL(?, $2::int)';
+	var params = [id, categoryId];
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
