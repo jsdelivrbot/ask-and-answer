@@ -70,7 +70,7 @@ function addUser(req, res) {
 			res.status(500).json({success: false, data: err});
 		}
 		else {
-			var id = result.insertId;
+			var id = result.rows.insertId;
 			console.log("id is: " + id);
 			
 			res.redirect('/profile?id=' + id);
