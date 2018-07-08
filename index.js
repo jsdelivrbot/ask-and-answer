@@ -70,7 +70,7 @@ function addUser(req, res) {
 			res.status(500).json({success: false, data: err});
 		}
 	
-		res.render('pages/profile?id=' + result.insertId);
+		res.render('pages/profile', {id: result.insertId});
 	});
 }
 
@@ -86,7 +86,7 @@ function myProfile(req, res) {
 	ssn = req.session;
 	
 	if (ssn.userID) {
-		res.render('pages/profile?userID=' + userID);
+		res.render('pages/profile' + userID);
 	}
 	else {
 		res.render('pages/sign_in');
