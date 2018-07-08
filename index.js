@@ -79,6 +79,35 @@ function addUser(req, res) {
 	});
 }
 
+function addQuestion(req, res) {
+	ssn = req.session;
+	userID = ssn.userID;
+	
+	if (userID) {
+		var categoryID = req.body.category;
+		var title = req.body.title;
+		var content = req.body.content;
+		
+		var sql = 'INSERT INTO question (title, content, date, user_id, category_id) VALUES ($1::varchar, $2::varchar, GETDATE(), $4::int, $5::int) RETURNS id';
+		var params = [title, content, userID, categoryID];
+	
+		pool.query(sql, params, function(err, result) {
+			if (err) {
+				res.status(500).json({success: false, data: err});
+			}
+			else {
+				var questionID = result.rows[0].id;
+				res.redirect('/question?id=' + questionID);
+				res.end();
+			}
+		});
+	}
+	else {
+		ssn.initialPage = 'ask';
+		res.redirect('/sign_in');
+	}
+}
+
 function updateUser(req, res) {
 	ssn = req.session;
 	var userID = ssn.userID;
@@ -226,4 +255,5 @@ express()
   .post('/updateUser', updateUser)
   .post('/signInUser', signInUser)
   .post('/addUser', addUser)
+  .post('/addQuestion', addQuestion)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
