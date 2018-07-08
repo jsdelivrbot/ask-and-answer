@@ -30,6 +30,8 @@ function getQuestion(req, res) {
 	var id = req.query.id;
 	var categoryId = req.query.categoryId;
 	
+	console.log("categoryId is: " + categoryId);
+	
 	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR category_id = $2::int)';
 	var params = [id, categoryId];
 	
