@@ -105,8 +105,14 @@ function home(req, res) {
 
 function profile(req, res) {
 	var id = req.query.id;
+	ssn = req.session;
 	
-	res.render('pages/profile', {id: id});
+	if (id == ssn.userID) {
+		res.render('pages/profile', {id: id, ownProfile: true});
+	}
+	else {
+		res.render('pages/profile', {id: id, ownProfile: false})
+	}
 }
 
 function myProfile(req, res) {
