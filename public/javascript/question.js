@@ -17,10 +17,12 @@ function displayQuestion(id) {
 	$.get("https://polar-everglades-23609.herokuapp.com/getQuestion", params, function(data, status){
 		if (data && data.length == 1) {
 			var title = data[0].title;
+			var date = data[0].date;
 			var content = data[0].content;
 			var user_id = data[0].user_id;
 			
 			document.getElementById("title").innerHTML = title;
+			document.getElementById("date").innerHTML = "Asked on " + date;
 			document.getElementById("content").innerHTML = content;
 			getUsername(user_id);
 		}

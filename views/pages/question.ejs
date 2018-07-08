@@ -10,8 +10,18 @@
 	<% include ../partials/nav.ejs %> 
 	<h2>Question</h2>
 	<h3 id="title">Title</h3>
+	<p id="date">Date</p>
 	<div id="asker"><a href="">User</a></div>
 	<p id="content">Content</p>
+	
+	<h3>My Answer</h3>
+	
+	<form method="post" action="/addAnswer">
+		Body: <br><textarea name="content" rows="15" cols="60"></textarea><br>
+		<input type="submit">
+	</form>
+	
+	<h3>Other Answers</h3>
 	
 	<script>
 		var questionId = "<%= id %>";
