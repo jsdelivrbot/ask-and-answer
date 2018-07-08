@@ -25,7 +25,7 @@ function displayQuestion(id) {
 			
 			document.getElementById("title").innerHTML = title;
 			document.getElementById("content").innerHTML = content;
-			document.getElementById("asker").innerHTML = getUsername(user_id);
+			document.getElementById("asker").innerHTML = "<a href='/profile?id='" + user_id + "'>" + getUsername(user_id) + "</a>";
 		}
 		else {
 			console.log("Invalid request!");
