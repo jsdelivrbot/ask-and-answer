@@ -71,8 +71,8 @@ function addUser(req, res) {
 		}
 		else {
 			var id = result.insertId;
-			//res.render('pages/profile', {id: id});
-		
+			console.log("id is: " + id);
+			
 			res.redirect('/profile?id=' + id);
 			res.end();
 		}
