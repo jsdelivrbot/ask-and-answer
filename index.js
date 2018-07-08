@@ -18,7 +18,7 @@ function getUser(req, res) {
 	pool.query(sql, params, function(err, result) {
 		if (err) {
 			console.log("Error in query: " + err);
-			res.status(500).json({success: false, data: error});
+			res.status(500).json({success: false, data: err});
 		}
 	
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -36,7 +36,7 @@ function getQuestion(req, res) {
 	pool.query(sql, params, function(err, result) {
 		if (err) {
 			console.log("Error in query: " + err);
-			res.status(500).json({success: false, data: error});
+			res.status(500).json({success: false, data: err});
 		}
 	
 		console.log("Found result: " + JSON.stringify(result.rows));
