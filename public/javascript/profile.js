@@ -8,7 +8,7 @@ function loadProfile(id, ownProfile) {
 			document.getElementById("description").innerHTML = data.description;
 			
 			if (ownProfile) {
-				document.getElementById("profileTools").innerHTML = "<a href='/updateProfile'>Edit Profile</a><a href='/logout'>Logout</a>";
+				document.getElementById("profileTools").innerHTML = "<a href='/updateProfile'>Edit Profile</a><br><a href='/logout'>Logout</a>";
 			}
 		}
 		else {
