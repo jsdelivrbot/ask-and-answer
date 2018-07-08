@@ -3,7 +3,7 @@ function listQuestions() {
 	var params = {categoryId: categoryId};
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getQuestion", params, function(data, status){
-		if (data && data.length > 0) {
+		if (data) {
 			var ul = $("#ulQuestions");
 			ul.empty();
 		
