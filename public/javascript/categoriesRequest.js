@@ -10,7 +10,7 @@ function updateResultList(data) {
 	if (data && data.length > 0) {
 		var categories = $("#selectCategories");
 		categories.empty();
-		categories.append("<option value='NULL'>None</option>");
+		categories.append("<option>None</option>");
 		
 		for (var i = 0; i < data.length; i++) {
 			var id = data[i].id;
