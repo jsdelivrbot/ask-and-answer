@@ -71,7 +71,7 @@ function addUser(req, res) {
 		}
 		else {
 			var id = result.rows.insertId;
-			console.log("result: " + result);
+			console.log("result: " + result.rows);
 			console.log("id is: " + id);
 			
 			res.redirect('/profile?id=' + id);
