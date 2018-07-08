@@ -46,7 +46,7 @@ function getQuestion(req, res) {
 }
 
 function getCategories(req, res) {
-	pool.query('SELECT name FROM category', function(error, result) {
+	pool.query('SELECT id, name FROM category', function(error, result) {
 		if (error) {
 			res.status(500).json({success: false, data: error});
 		} 

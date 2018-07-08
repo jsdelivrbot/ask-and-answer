@@ -1,6 +1,7 @@
 function listQuestions() {
-	var params = {};
-
+	var categoryId = document.getElementById("selectCategories").value;
+	var params = {categoryId: categoryId};
+	
 	$.get("https://polar-everglades-23609.herokuapp.com/getQuestion", params, function(data, status){
 		if (data && data.length > 0) {
 			var ul = $("#ulQuestions");

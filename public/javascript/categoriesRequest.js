@@ -13,8 +13,9 @@ function updateResultList(data) {
 		categories.append("<option value='none'>None</option>");
 		
 		for (var i = 0; i < data.length; i++) {
+			var id = data[i].id;
 			var name = data[i].name;
-			categories.append("<option value='" + name + "'>" + name + "</option>");
+			categories.append("<option value='" + id + "'>" + name + "</option>");
 		}
 	}
 }
