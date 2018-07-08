@@ -88,7 +88,7 @@ function addQuestion(req, res) {
 		var title = req.body.title;
 		var content = req.body.content;
 		
-		var sql = 'INSERT INTO question (title, content, date, user_id, category_id) VALUES ($1::varchar, $2::varchar, CURDATE(), $4::int, $5::int) RETURNS id';
+		var sql = 'INSERT INTO question (title, content, date, user_id, category_id) VALUES ($1::varchar, $2::varchar, CURDATE(), $4::int, $5::int) RETURNING id';
 		var params = [title, content, userID, categoryID];
 	
 		pool.query(sql, params, function(err, result) {
