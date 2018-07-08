@@ -9,7 +9,7 @@
 	<% include ../partials/nav.ejs %> 
 	<h2>Ask a Question</h2>
 	
-	<form>
+	<form method="post" action="/addQuestion">
 		Category: <br><select id="selectCategories" name="category"></select><br>
 		Title: <br><textarea name="title" rows="1" cols="60" maxlength="58"></textarea><br>
 		Body: <br><textarea name="content" rows="15" cols="60"></textarea><br>
