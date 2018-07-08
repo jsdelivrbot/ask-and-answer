@@ -1,5 +1,6 @@
 function displayQuestion(id) {
 	var params = {id: id};
+	console.log("id is: " + id);
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getQuestion", params, function(data, status){
 		if (data && data.length == 1) {
