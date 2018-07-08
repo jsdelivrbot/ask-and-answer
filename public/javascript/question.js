@@ -1,4 +1,5 @@
 function getUsername(user_id) {
+	console.log("user id in request is: " + user_id);
 	var params = {id: user_id};
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
