@@ -137,6 +137,13 @@ function signInUser(req, res) {
 	})
 }
 
+function logout(req, res) {
+	ssn = req.session;
+	ssn.userID = null;
+	
+	res.redirect('/');
+}
+
 function home(req, res) {
 	res.render('pages/index');
 }
