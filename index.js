@@ -71,6 +71,7 @@ function addUser(req, res) {
 		}
 		else {
 			var id = result.rows.insertId;
+			console.log("stuff: " + JSON.stringify(result.rows));
 			console.log("result: " + result.rows);
 			console.log("id is: " + id);
 			
