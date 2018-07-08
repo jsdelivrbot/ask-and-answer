@@ -34,6 +34,7 @@ function getQuestion(req, res) {
 	if (id) {
 		sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
 		params = [id];
+	}
 	else {
 		sql = 'SELECT id, title, content, "date", category_id FROM question';
 	}
