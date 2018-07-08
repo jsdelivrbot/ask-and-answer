@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="/javascript/question.js"></script>
 </head>
 
 <body>
 	<% include ../partials/title.ejs %> 
 	<% include ../partials/nav.ejs %> 
 	<h2>Question</h2>
+	<h3 id="title">Title</h3>
+	<a href>User</a>
+	<p id="content">Content</p>
+	
+	<script>
+		var questionId = "<% id %>";
+		displayQuestion(questionId);
+	</script>
 </body>
 </html>
