@@ -88,12 +88,13 @@ function addQuestion(req, res) {
 		var title = req.body.title;
 		var content = req.body.content;
 		
-		var sql = 'INSERT INTO question (title, content, date, user_id, category_id) VALUES ($1::varchar, $2::varchar, GETDATE(), $4::int, $5::int) RETURNS id';
+		var sql = 'INSERT INTO question (title, content, date, user_id, category_id) VALUES ($1::varchar, $2::varchar, CURDATE(), $4::int, $5::int) RETURNS id';
 		var params = [title, content, userID, categoryID];
 	
 		pool.query(sql, params, function(err, result) {
 			if (err) {
 				res.status(500).json({success: false, data: err});
+				console.log(err);
 			}
 			else {
 				var questionID = result.rows[0].id;
