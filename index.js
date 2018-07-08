@@ -32,7 +32,7 @@ function getQuestion(req, res) {
 	
 	console.log("categoryId is: " + categoryId);
 	
-	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR category_id = $2::int)';
+	var sql = 'SELECT id, title, content, "date", category_id, user_id FROM question WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR category_id = $2::int)';
 	var params = [id, categoryId];
 	
 	pool.query(sql, params, function(err, result) {
