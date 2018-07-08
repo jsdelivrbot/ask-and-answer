@@ -47,6 +47,25 @@ function getQuestion(req, res) {
 	});
 }
 
+function getAnswer(req, res) {
+	var id = req.query.id;
+	var questionID = req.query.questionID;
+	
+	var sql = 'SELECT id, content, user_id, question_id FROM question WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR question_id = 2::int)';
+	var params = [id, questionID];
+	
+	pool.query(sql, params, function(err, result) {
+		if (err) {
+			console.log("Error in query: " + err);
+			res.status(500).json({success: false, data: err});
+		}
+		else {
+			console.log("Found result: " + JSON.stringify(result.rows));
+			res.status(200).json(result.rows);
+		}
+	});
+}
+
 function getCategories(req, res) {
 	pool.query('SELECT id, name FROM category', function(error, result) {
 		if (error) {
@@ -106,6 +125,33 @@ function addQuestion(req, res) {
 	else {
 		ssn.initialPage = 'ask';
 		res.redirect('/sign_in');
+	}
+}
+
+function addAnswer(req, res) {
+	ssn = req.session;
+	userID = ssn.userID;
+	var questionID = req.query.questionID;
+	
+	if (userID && questionID) {
+		var content = req.body.content;
+		
+		var sql = 'INSERT INTO answer (content, user_id, question_id) VALUES ($1::varchar, $2::int, $3::int)';
+		var params = [content, userID, questionID];
+	
+		pool.query(sql, params, function(err, result) {
+			if (err) {
+				res.status(500).json({success: false, data: err});
+				console.log(err);
+			}
+			else {
+				res.redirect('/question?id=' + questionID);
+				res.end();
+			}
+		});
+	}
+	else {
+		res.redirect('/question?id=' + questionID);
 	}
 }
 
@@ -250,6 +296,7 @@ express()
   .get('/ask', ask)
   .get('/getCategories', getCategories)
   .get('/getQuestion', getQuestion)
+  .get('/getAnswer', getAnswer)
   .get('/getUser', getUser)
   .get('/updateProfile', updateProfile)
   .get('/logout', logout)
@@ -257,4 +304,5 @@ express()
   .post('/signInUser', signInUser)
   .post('/addUser', addUser)
   .post('/addQuestion', addQuestion)
+  .post('/addAnswer', addAnswer)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
