@@ -132,7 +132,9 @@ function sign_up(req, res) {
 }
 
 function question(req, res) {
-	res.render('pages/question');
+	var id = req.query.id;
+	
+	res.render('pages/question', {id: id});
 }
 
 function ask(req, res) {
