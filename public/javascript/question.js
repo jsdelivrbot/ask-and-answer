@@ -20,6 +20,7 @@ function displayQuestion(id) {
 			var title = data[0].title;
 			var content = data[0].content;
 			var user_id = data[0].user_id;
+			console.log("function user_id is: " + user_id);
 			
 			document.getElementById("title").innerHTML = title;
 			document.getElementById("content").innerHTML = content;
