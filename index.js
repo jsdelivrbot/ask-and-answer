@@ -90,7 +90,7 @@ function signInUser(req, res) {
 		else {
 			ssn = req.session;
 			ssn.userID = result.rows[0].id;
-			res.redirect('/profile');
+			res.redirect('/' + ssn.initialPage);
 			res.end();
 		}
 	})
@@ -108,10 +108,11 @@ function myProfile(req, res) {
 	ssn = req.session;
 	
 	if (ssn.userID) {
-		res.render('pages/profile' + userID);
+		res.redirect('/profile?id=' + ssn.userID);
 	}
 	else {
-		res.render('pages/sign_in');
+		ssn.initialPage = 'myProfile';
+		res.redirect('/sign_in');
 	}
 }
 
@@ -132,7 +133,15 @@ function question(req, res) {
 }
 
 function ask(req, res) {
-	res.render('pages/ask');
+	ssn = req.session;
+	
+	if (ssn.userID) {
+		res.render('pages/ask');
+	}
+	else {
+		ssn.initialPage = 'ask';
+		res.redirect('/sign_in');
+	}
 }
 
 const PORT = process.env.PORT || 3000
