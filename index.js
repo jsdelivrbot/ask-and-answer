@@ -70,7 +70,8 @@ function addUser(req, res) {
 			res.status(500).json({success: false, data: err});
 		}
 	
-		res.render('pages/profile', {id: result.insertId});
+		var id = result.insertId;
+		res.render('pages/profile', {id: id});
 	});
 }
 
