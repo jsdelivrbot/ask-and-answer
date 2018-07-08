@@ -4,7 +4,7 @@ function getUsername(user_id) {
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 		if (data) {
-			return data[0].username;
+			return data.username;
 		}
 		else {
 			console.log("Invalid request!");
