@@ -104,7 +104,9 @@ function home(req, res) {
 }
 
 function profile(req, res) {
-	res.render('pages/profile');
+	var id = req.query.id;
+	
+	res.render('pages/profile', {id: id});
 }
 
 function myProfile(req, res) {

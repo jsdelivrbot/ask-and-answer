@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="/javascript/profile.js"></script>
 <head>
 
 </head>
@@ -8,5 +10,13 @@
 	<% include ../partials/title.ejs %> 
 	<% include ../partials/nav.ejs %> 
 	<h2>Profile</h2>
+	<div id="image"><img src=""></img></div>
+	<div id="username"><h3>Username</h3></div>
+	<div id="description"><p>Description</p></div>
+	
+	<script>
+		var userId = "<%= id %>";
+		loadProfile(userId);
+	</script>
 </body>
 </html>
