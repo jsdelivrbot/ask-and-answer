@@ -28,10 +28,15 @@ function getUser(req, res) {
 
 function getQuestion(req, res) {
 	var id = req.query.id;
+	var sql;
+	var params;
 	
-	console.log("Getting question from DB with id: " + id);
-	var sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
-	var params = [id];
+	if (id) {
+		sql = 'SELECT id, title, content, "date", category_id FROM question WHERE id = $1::int';
+		params = [id];
+	else {
+		sql = 'SELECT id, title, content, "date", category_id FROM question';
+	}
 	
 	pool.query(sql, params, function(err, result) {
 		if (err) {
@@ -40,7 +45,7 @@ function getQuestion(req, res) {
 		}
 	
 		console.log("Found result: " + JSON.stringify(result.rows));
-		res.status(200).json(result.rows[0]);
+		res.status(200).json(result.rows);
 	});
 }
 
