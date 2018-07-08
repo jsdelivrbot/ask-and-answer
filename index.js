@@ -81,7 +81,7 @@ function signInUser(req, res) {
 	var pass = req.body.pass;
 	
 	var sql = 'SELECT id, username, password FROM "user" WHERE username = $1::varchar AND password = $2::varchar';
-	var params = [user, pass]
+	var params = [user, pass];
 	
 	pool.query(sql, params, function(err, result) {
 		if (error || result.rows.length > 1) {
