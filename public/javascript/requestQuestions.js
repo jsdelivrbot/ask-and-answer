@@ -8,7 +8,7 @@ function listQuestions() {
 		
 			for (var i = 0; i < data.length; i++) {
 				var title = data[i].title;
-				categories.append("<li>" + title + "</li>");
+				ul.append("<li>" + title + "</li>");
 			}
 		}
 	});
