@@ -79,6 +79,44 @@ function addUser(req, res) {
 	});
 }
 
+function updateUser(req, res) {
+	ssn = req.session;
+	var userID = ssn.userID;
+	
+	if (userID) {
+		var picture_url = req.body.picture_url;
+		var description = req.body.description;
+	
+		var sql = 'UPDATE "user" SET picture_url = $1::varchar, description = $2::varchar WHERE id = $3::int';
+		var params = [picture_url, description, userID];
+	
+		pool.query(sql, params, function(err, result) {
+			if (err) {
+				res.redirect('/updateProfile');
+			}
+			else {
+				res.redirect('/myProfile');
+				res.end();
+			}
+		});
+	}
+	else {
+		res.redirect('/updateProfile');
+	}
+}
+
+function updateProfile(req, res) {
+	ssn = req.session;
+	
+	if (ssn.userID) {
+		res.render('pages/updateProfile');
+	}
+	else {
+		ssn.initialPage = 'updateProfile';
+		res.redirect('/sign_in');
+	}
+}
+
 function signInUser(req, res) {
 	var user = req.body.user;
 	var pass = req.body.pass;
@@ -176,6 +214,7 @@ express()
   .get('/getCategories', getCategories)
   .get('/getQuestion', getQuestion)
   .get('/getUser', getUser)
+  .post('/updateProfile', updateProfile)
   .post('/signInUser', signInUser)
   .post('/addUser', addUser)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+	<% include ../partials/title.ejs %> 
+	<% include ../partials/nav.ejs %> 
+	<h2>Update Profile</h2>
+	
+	<form method="post" action="/updateUser">
+		Picture URL: <br><textarea name="picture_url" rows="1" cols="60"></textarea><br>
+		Body: <br><textarea name="description" rows="15" cols="60"></textarea><br>
+		<input type="submit">
+	</form>
+</body>
+</html>
