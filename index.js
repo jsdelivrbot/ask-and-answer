@@ -93,7 +93,7 @@ function signInUser(req, res) {
 			res.redirect('/profile');
 			res.end();
 		}
-	}
+	})
 }
 
 function home(req, res) {
