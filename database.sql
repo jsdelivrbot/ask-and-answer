@@ -16,12 +16,14 @@ create table question (
 	title varchar(40) not null,
 	content varchar(500) not null,
 	"date" date not null,
+	user_id integer references "user"(id),
 	category_id integer references category(id)
 );
 
 create table answer (
 	id serial primary key,
 	content varchar(500) not null,
+	user_id integer references "user"(id),
 	question_id integer references question(id)
 );
 
