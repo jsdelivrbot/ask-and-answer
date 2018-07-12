@@ -51,7 +51,7 @@ function getAnswer(req, res) {
 	var id = req.query.id;
 	var questionID = req.query.questionID;
 	
-	var sql = 'SELECT id, content, user_id, question_id FROM question WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR question_id = 2::int)';
+	var sql = 'SELECT id, content, user_id, question_id FROM answer WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR question_id = 2::int)';
 	var params = [id, questionID];
 	
 	pool.query(sql, params, function(err, result) {
