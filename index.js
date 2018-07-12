@@ -51,7 +51,7 @@ function getAnswer(req, res) {
 	var id = req.query.id;
 	var questionID = req.query.questionID;
 	
-	var sql = 'SELECT id, content, user_id, question_id FROM answer INNER JOIN user ON answer.user_id = user.id WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR question_id = 2::int)';
+	var sql = 'SELECT answer.id, answer.content, answer.user_id, answer.question_id FROM answer INNER JOIN user ON answer.user_id = user.id WHERE ($1::int IS NULL OR id = $1::int) AND ($2::int IS NULL OR question_id = 2::int)';
 	var params = [id, questionID];
 	
 	pool.query(sql, params, function(err, result) {
