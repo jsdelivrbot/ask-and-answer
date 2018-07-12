@@ -43,23 +43,19 @@ function displayAnswers(questionID) {
 			for (var i = 0; i < data.length; i++) {
 				var content = data[i].content;
 				var user_id = data[i].user_id;
-				var username;
 				
 				var params = {id: user_id};
 	
-				$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, setTimeout(function(data, status){
+				$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 					if (data) {
-						username = data.username;
-						console.log("Username is: " + username);
+						var username = data.username;
+						div.append("<div><a href='/profile?id=" + user_id + "'>" + username + "</a><p>" + content + "</p></div>");
 						//div.append("<a href='/profile?id=" + data.id + "'>" + data.username + "</a>");
 					}
 					else {
 						console.log("Invalid request!");
 					}
-				}, 0));
-			
-				console.log("Username is now: " + username);
-				div.append("<div><a href='/profile?id=" + user_id + "'>" + username + "</a><p>" + content + "</p></div>");
+				});
 			}
 		}
 		else {
