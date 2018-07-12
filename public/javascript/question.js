@@ -50,6 +50,7 @@ function displayAnswers(questionID) {
 				$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 					if (data) {
 						username = data.username;
+						console.log("Username is: " + username);
 						//div.append("<a href='/profile?id=" + data.id + "'>" + data.username + "</a>");
 					}
 					else {
