@@ -58,6 +58,7 @@ function displayAnswers(questionID) {
 					}
 				});
 			
+				console.log("Username is now: " + username);
 				div.append("<div><a href='/profile?id=" + user_id + "'>" + username + "</a><p>" + content + "</p></div>");
 			}
 		}
