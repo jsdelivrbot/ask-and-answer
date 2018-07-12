@@ -46,7 +46,7 @@ function displayAnswers(questionID) {
 				console.log("content:" + content);
 				var params = {id: user_id};
 	
-				$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data2, status2){
+				$.ajax(async: false, type: 'GET', url: 'https://polar-everglades-23609.herokuapp.com/getUser', success: function(data2, status2){
 					if (data2) {
 						console.log("content now:" + content);
 						var username = data2.username;
