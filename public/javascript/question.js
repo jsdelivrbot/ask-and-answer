@@ -57,7 +57,7 @@ function displayAnswers(questionID) {
 					}
 				});
 			
-				div.append("<div><a href='/profile?id=" + user_id + "'>" + data.username + "</a><p>" + content + "</p></div>");
+				div.append("<div><a href='/profile?id=" + user_id + "'>" + username + "</a><p>" + content + "</p></div>");
 			}
 		}
 		else {
