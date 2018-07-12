@@ -40,9 +40,9 @@ function displayAnswers(questionID) {
 			var div = $("#answers");
 			div.empty();
 			
-			for (var obj in data) {
-				var content = obj.content;
-				var user_id = obj.user_id;
+			for (int i = 0; i < data.length; i++) {
+				var content = data[i].content;
+				var user_id = data[i].user_id;
 				
 				var params = {id: user_id};
 	
