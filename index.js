@@ -52,7 +52,7 @@ function getAnswer(req, res) {
 	var questionID = req.query.questionID;
 	console.log("question id is: " + questionID);
 	
-	var sql = 'SELECT answer.id, answer.content, answer.user_id, answer.question_id, "user".username FROM answer INNER JOIN "user" ON answer.user_id = "user".id WHERE ($1::int IS NULL OR answer.id = $1::int) AND ($2::int IS NULL OR answer.question_id = 2::int)';
+	var sql = 'SELECT answer.id, answer.content, answer.user_id, answer.question_id, "user".username FROM answer INNER JOIN "user" ON answer.user_id = "user".id WHERE ($1::int IS NULL OR answer.id = $1::int) AND ($2::int IS NULL OR answer.question_id = $2::int)';
 	var params = [id, questionID];
 	
 	pool.query(sql, params, function(err, result) {
