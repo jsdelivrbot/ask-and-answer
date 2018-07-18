@@ -3,7 +3,9 @@ function getUsername(user_id) {
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 		if (data) {
-			document.getElementById("asker").innerHTML = "By <a href='/profile?id=" + data.id + "'>" + data.username + "</a>";
+			var date = $("#date");
+			date.append(" by <a href='/profile?id=" + data.id + "'>" + data.username + "</a>");
+			//document.getElementById("asker").innerHTML = "By <a href='/profile?id=" + data.id + "'>" + data.username + "</a>";
 		}
 		else {
 			console.log("Invalid request!");
