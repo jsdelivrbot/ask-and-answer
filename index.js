@@ -2,7 +2,6 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser');
 const path = require('path')
-//require('bootstrap')
 const {Pool} = require('pg')
 
 const pool = new Pool({
