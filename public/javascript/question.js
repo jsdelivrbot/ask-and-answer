@@ -3,7 +3,7 @@ function getUsername(user_id) {
 	
 	$.get("https://polar-everglades-23609.herokuapp.com/getUser", params, function(data, status){
 		if (data) {
-			var date = $("#date");
+			var date = $("#dateAsker");
 			date.append(" by <a href='/profile?id=" + data.id + "'>" + data.username + "</a>");
 			//document.getElementById("asker").innerHTML = "By <a href='/profile?id=" + data.id + "'>" + data.username + "</a>";
 		}
@@ -26,7 +26,7 @@ function displayQuestion(id) {
 			var dateString = date.toLocaleDateString("en-US");
 			
 			document.getElementById("title").innerHTML = title;
-			document.getElementById("date").innerHTML = "Asked on " + dateString;
+			document.getElementById("dateAsker").innerHTML = "Asked on " + dateString;
 			document.getElementById("content").innerHTML = content;
 			getUsername(user_id);
 		}
