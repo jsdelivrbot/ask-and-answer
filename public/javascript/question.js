@@ -21,8 +21,10 @@ function displayQuestion(id) {
 			var content = data[0].content;
 			var user_id = data[0].user_id;
 			
+			var dateString = date.toLocaleDateString("en-US");
+			
 			document.getElementById("title").innerHTML = title;
-			document.getElementById("date").innerHTML = "Asked on " + date;
+			document.getElementById("date").innerHTML = "Asked on " + dateString;
 			document.getElementById("content").innerHTML = content;
 			getUsername(user_id);
 		}
