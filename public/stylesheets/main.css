@@ -3,6 +3,10 @@ body {
 	margin-right: 20%;
 }
 
-div#back {
-
+img {
+	float: right;
+	width: 350px;
+	margin-top: 30px;
+	margin-left: 30px;
+	clear: right;
 }
