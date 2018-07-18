@@ -44,7 +44,6 @@ function displayAnswers(questionID) {
 				var content = data[i].content;
 				var user_id = data[i].user_id;
 				var username = data[i].username;
-				console.log("content:" + content);
 				
 				div.append("<div><a href='/profile?id=" + user_id + "'>" + username + "</a><p>" + content + "</p></div>");
 				/*
